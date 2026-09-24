@@ -28,12 +28,12 @@
              * When a Customer variable is copied into another variable, only the reference is copied, not the actual object.
              * Therefore, if one variable modifies the object, the other variable will see the same changes.
              */
-            Customer customer1 = new Customer();
-            customer1.Name = "Ahmed";
-            Customer customer2 = customer1;
-            customer2.Name = "Mohamed";
-            Console.WriteLine(customer1.Name); // Output: Mohamed
-            Console.WriteLine(customer2.Name); // Output: Mohamed
+            //Customer customer1 = new Customer();
+            //customer1.Name = "Ahmed";
+            //Customer customer2 = customer1;
+            //customer2.Name = "Mohamed";
+            //Console.WriteLine(customer1.Name); // Output: Mohamed
+            //Console.WriteLine(customer2.Name); // Output: Mohamed
                                                // Conclusion: Modifying the copied Customer affects the original because classes are copied by reference.
             #endregion
 
@@ -76,16 +76,113 @@
             #endregion
 
             #region Part02Question03
-            DeliveryCenter center = new DeliveryCenter();
-            DeliveryAddress address = new DeliveryAddress("Cairo","Tahrir Street",10 );
-            Shipment shipment1 = new Shipment("TR-001", "Laptop",10,100,address);
-            Shipment shipment2 = new Shipment("TR-002","Phone",5,50,address);
+            //DeliveryCenter center = new DeliveryCenter();
+            //DeliveryAddress address = new DeliveryAddress("Cairo","Tahrir Street",10 );
+            //Shipment shipment1 = new Shipment("TR-001", "Laptop",10,100,address);
+            //Shipment shipment2 = new Shipment("TR-002","Phone",5,50,address);
 
-            Console.WriteLine(center.AddShipment(shipment1)); // True
-            Console.WriteLine(center.AddShipment(shipment2)); // True
+            //Console.WriteLine(center.AddShipment(shipment1)); // True
+            //Console.WriteLine(center.AddShipment(shipment2)); // True
             #endregion
-     
+
+            #region Part02Question04
+            // 1.Create DeliveryCenter
+            DeliveryCenter center = new DeliveryCenter();
+
+            // 2. Read three shipments
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Enter Shipment {i} Data");
+
+                // Tracking Code
+                Console.Write("Tracking Code: ");
+                string trackingCode = Console.ReadLine()!;
+
+                // Description
+                Console.Write("Description: ");
+                string description = Console.ReadLine()!;
+
+                // Weight
+                Console.Write("Weight: ");
+                double weight = double.Parse(Console.ReadLine()!);
+
+                // Delivery Fee
+                Console.Write("Delivery Fee: ");
+                decimal deliveryFee = decimal.Parse(Console.ReadLine()!);
+
+                // City
+                Console.Write("City: ");
+                string city = Console.ReadLine()!;
+
+                // Street
+                Console.Write("Street: ");
+                string street = Console.ReadLine()!;
+
+                // Building Number
+                Console.Write("Building Number: ");
+                int buildingNumber = int.Parse(Console.ReadLine()!);
+
+                DeliveryAddress address = new DeliveryAddress(city, street, buildingNumber);
+                Shipment shipment = new Shipment(trackingCode, description, weight, deliveryFee, address);
+
+                bool added = center.AddShipment(shipment);
+
+                if (added)
+                {
+                    Console.WriteLine("Shipment added successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Delivery center is full.");
+                }
+            }
+            
+            // 3. Print all three shipments
+            Console.WriteLine();
+            Console.WriteLine("--- All Shipments ---");
+            for (int i = 0; i < 3; i++)
+            {
+                center[i].PrintShipment();
+                Console.WriteLine();
+            }
+
+            // 4. Search using tracking code
+            Console.Write("Enter a tracking code to search: ");
+            string searchCode = Console.ReadLine();
+            // Use string indexer
+            Shipment foundShipment = center[searchCode];
+
+            // 5. Check if shipment was found
+            if (foundShipment.TrackingCode != null)
+            {
+                Console.WriteLine("Shipment found:");
+                foundShipment.PrintShipment();
+            }
+            else
+            {
+                Console.WriteLine("Shipment not found.");
+            }
+
+            // 6.Demonstrate Struct Copy Behavior
+            Console.WriteLine();
+            Console.WriteLine("--- Struct Copy Test ---");
+
+            DeliveryAddress originalAddress = new DeliveryAddress( "Cairo", "Tahrir Street", 15);
+            DeliveryAddress copiedAddress = originalAddress;
+            copiedAddress.Street = "Makram Ebeid Street";
+            copiedAddress.BuildingNumber = 20;
+
+            Console.WriteLine(
+                $"Original Address: {originalAddress.GetFullAddress()}"
+            );
+            Console.WriteLine(
+                $"Copied Address: {copiedAddress.GetFullAddress()}"
+            );
+
+            #endregion
             #endregion
         }
+
     }
 }
