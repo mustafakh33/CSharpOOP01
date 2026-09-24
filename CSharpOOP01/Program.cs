@@ -13,12 +13,12 @@
              * When a DeliveryAddress variable is copied into another variable, the data is copied. Each variable gets its own independent copy.
              * Therefore, if the copy is modified, the original variable is not affected.
              */     
-            DeliveryAddress address1 = new DeliveryAddress();
-            address1.City = "Cairo";
-            DeliveryAddress address2 = address1;
-            address2.City = "Giza";
-            Console.WriteLine(address1.City); // Output: Cairo
-            Console.WriteLine(address2.City); // Output: Giza
+            //DeliveryAddress address1 = new DeliveryAddress();
+            //address1.City = "Cairo";
+            //DeliveryAddress address2 = address1;
+            //address2.City = "Giza";
+            //Console.WriteLine(address1.City); // Output: Cairo
+            //Console.WriteLine(address2.City); // Output: Giza
             // Conclusion: Modifying the copied DeliveryAddress does not affect the original because structs are copied by value.
 
             // b) What happens when a Customer variable is copied into another variable and one variable modifies the object
@@ -52,6 +52,16 @@
              * Properties can include validation logic to ensure that only valid data is set, improving data integrity.
              * This approach also allows for read-only properties or computed properties, enhancing encapsulation and maintainability.
              */
+            #endregion
+            #endregion
+
+            #region Part 02 : Practical
+            #region Part02Question01
+            DeliveryAddress address1 = new DeliveryAddress("Cairo", "Tahrir Street", 10);
+            DeliveryAddress address2 = address1;
+            address2.City = "Giza"; address2.Street = "Pyramids Street"; address2.BuildingNumber = 25;
+            Console.WriteLine(address1.GetFullAddress()); // Output: Cairo, Tahrir Street, 10
+            Console.WriteLine(address2.GetFullAddress()); // Output: Giza, Pyramids Street, 25
             #endregion
             #endregion
         }
