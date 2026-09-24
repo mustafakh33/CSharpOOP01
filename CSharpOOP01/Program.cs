@@ -63,6 +63,17 @@
             Console.WriteLine(address1.GetFullAddress()); // Output: Cairo, Tahrir Street, 10
             Console.WriteLine(address2.GetFullAddress()); // Output: Giza, Pyramids Street, 25
             #endregion
+
+            #region Part02Question02
+            Shipment shipment1 = new Shipment("TR-001");
+            DeliveryAddress address = new DeliveryAddress("Cairo", "Tahrir Street", 10);
+            Shipment shipment2 = new Shipment("TR-002", "Electronics", 10, 100, address);
+            shipment1.PrintShipment();
+            Console.WriteLine();
+            shipment2.PrintShipment();
+            shipment2.UpdateDeliveryFee(150);
+            shipment2.PrintShipment();
+            #endregion
             #endregion
         }
     }

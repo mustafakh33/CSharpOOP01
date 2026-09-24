@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSharpOOP01
 {
-    internal struct DeliveryAddress
+    public struct DeliveryAddress
     {
         public string City;
         public string Street;
