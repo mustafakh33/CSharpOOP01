@@ -57,23 +57,34 @@
 
             #region Part 02 : Practical
             #region Part02Question01
-            DeliveryAddress address1 = new DeliveryAddress("Cairo", "Tahrir Street", 10);
-            DeliveryAddress address2 = address1;
-            address2.City = "Giza"; address2.Street = "Pyramids Street"; address2.BuildingNumber = 25;
-            Console.WriteLine(address1.GetFullAddress()); // Output: Cairo, Tahrir Street, 10
-            Console.WriteLine(address2.GetFullAddress()); // Output: Giza, Pyramids Street, 25
+            //DeliveryAddress address1 = new DeliveryAddress("Cairo", "Tahrir Street", 10);
+            //DeliveryAddress address2 = address1;
+            //address2.City = "Giza"; address2.Street = "Pyramids Street"; address2.BuildingNumber = 25;
+            //Console.WriteLine(address1.GetFullAddress()); // Output: Cairo, Tahrir Street, 10
+            //Console.WriteLine(address2.GetFullAddress()); // Output: Giza, Pyramids Street, 25
             #endregion
 
             #region Part02Question02
-            Shipment shipment1 = new Shipment("TR-001");
-            DeliveryAddress address = new DeliveryAddress("Cairo", "Tahrir Street", 10);
-            Shipment shipment2 = new Shipment("TR-002", "Electronics", 10, 100, address);
-            shipment1.PrintShipment();
-            Console.WriteLine();
-            shipment2.PrintShipment();
-            shipment2.UpdateDeliveryFee(150);
-            shipment2.PrintShipment();
+            //Shipment shipment1 = new Shipment("TR-001");
+            //DeliveryAddress address = new DeliveryAddress("Cairo", "Tahrir Street", 10);
+            //Shipment shipment2 = new Shipment("TR-002", "Electronics", 10, 100, address);
+            //shipment1.PrintShipment();
+            //Console.WriteLine();
+            //shipment2.PrintShipment();
+            //shipment2.UpdateDeliveryFee(150);
+            //shipment2.PrintShipment();
             #endregion
+
+            #region Part02Question03
+            DeliveryCenter center = new DeliveryCenter();
+            DeliveryAddress address = new DeliveryAddress("Cairo","Tahrir Street",10 );
+            Shipment shipment1 = new Shipment("TR-001", "Laptop",10,100,address);
+            Shipment shipment2 = new Shipment("TR-002","Phone",5,50,address);
+
+            Console.WriteLine(center.AddShipment(shipment1)); // True
+            Console.WriteLine(center.AddShipment(shipment2)); // True
+            #endregion
+     
             #endregion
         }
     }
